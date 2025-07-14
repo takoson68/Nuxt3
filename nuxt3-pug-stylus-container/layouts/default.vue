@@ -52,7 +52,7 @@ function  handleLogin(payload) {
 
   NuxtPage
 
-  footer 我的頁尾 
+  footer 我的頁尾 @~~~~
 
 </template>
 
