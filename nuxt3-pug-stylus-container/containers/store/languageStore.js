@@ -4,15 +4,18 @@ const languageStore = {
 
   async loadLanguageFile(langCode) {
     langCode = langCode || this.language;
-
+    let parsed = null;
+  
     try {
-      const res = await fetch(`/lang/lang-${langCode}.txt`);
-      const text = await res.text();
-      const parsed = this.parseLangText(text);
-      this.language = langCode;
-      this.langData = parsed;
-
-      if (typeof localStorage !== 'undefined') {
+      if (process.client) {
+        const res = await fetch(`./lang/lang-${langCode}.txt`);
+        const text = await res.text();
+        parsed = this.parseLangText(text);
+        this.language = langCode;
+        this.langData = parsed;
+      }
+  
+      if (process.client && parsed) {
         localStorage.setItem("lang_code", langCode);
         localStorage.setItem(`lang_data_${langCode}`, JSON.stringify(parsed));
       }
