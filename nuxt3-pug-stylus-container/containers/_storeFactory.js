@@ -40,7 +40,7 @@ export function createStore({ name, storageKey = null, defaultValue }) {
         state.value = value
       }
 
-      if (storageKey) {
+      if (storageKey && typeof localStorage !== 'undefined') {
         try {
           const raw = isObj || isArray ? toRaw(state) : value
           localStorage.setItem(storageKey, JSON.stringify(raw))
@@ -55,10 +55,12 @@ export function createStore({ name, storageKey = null, defaultValue }) {
       } else {
         state.value = defaultValue
       }
-      localStorage.removeItem(storageKey)
+      if (storageKey && typeof localStorage !== 'undefined') {
+        localStorage.removeItem(storageKey)
+      }
     },
     loadFromStorage() {
-      if (!storageKey) return
+      if (!storageKey || typeof localStorage === 'undefined') return
       try {
         const raw = localStorage.getItem(storageKey)
         if (raw) store.set(JSON.parse(raw))
@@ -68,7 +70,12 @@ export function createStore({ name, storageKey = null, defaultValue }) {
     }
   }
 
-  store.loadFromStorage()
+  // 延遲執行，避免 SSR 出錯
+  if (typeof window !== 'undefined') {
+    store.loadFromStorage()
+  }
+
   store.__storeName = name
   return store
 }
+

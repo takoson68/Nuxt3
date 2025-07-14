@@ -25,7 +25,7 @@ export default defineNuxtConfig({
     '@': resolve(__dirname, './'),
     // '~/containers': resolve(__dirname, './containers'),
   },
-  ssr: false, // ❗必須禁用 SSR
+  ssr: true, // ❗必須禁用 SSR
   target: 'static', // ❗已不再使用，但保留相容性
   app: {
     baseURL: process.env.NUXT_APP_BASE_URL || '/'
