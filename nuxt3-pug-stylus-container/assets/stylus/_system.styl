@@ -1,0 +1,316 @@
+
+@import './_theme'
+@import './_mixin'
+
+
+body
+  overflow hidden
+
+#app
+  padding 2.6em 0em 
+  display flex
+  flex-direction column
+  .conBOx
+    display flex
+    width 100%
+    .conApp
+      width 100%
+  
+  h2 
+    font-size 1.25em
+    font-weight bold
+  
+.layout-container
+  display flex
+  flex-direction column
+  min-height 100vh
+  width 100%
+  background-color #eeeeee
+.layout-header
+  padding 0
+.layout-footer
+  background #333
+  color white
+  padding 1rem
+  text-align center
+  width 100%
+  position fixed
+  bottom 0
+  left 
+  
+.layout-nav
+  background #f8f8f8
+  padding 0.5rem 1rem
+
+.layout-main
+  display flex
+  flex-direction row
+  height calc(100vh - 5.5em)
+  overflow auto
+  margin-bottom -2px
+  .conApp
+    flex 4
+    padding 1em
+    padding-bottom 1.15em
+    min-height calc(100vh - 7.75em)
+  .listMenu
+    max-width 180px
+    flex 1
+    padding-right 1em
+    padding-top 1em
+    position relative
+    ul 
+      position sticky
+      top 1em
+      li 
+        padding .25em 0em 0em 1em
+        a
+          border-bottom 1px solid #555
+          display block
+          padding .5em .25em
+    & + .conApp
+      border-left 1px solid #333
+  .leftBox
+    max-width 300px
+    flex 1
+    padding 1em
+    position relative
+    .calendarTemp
+      position sticky
+      top 1em   
+      margin 0 auto
+    & + .conApp
+      border-left 1px solid #333
+
+.containerBox
+  margin 0 auto 
+  max-width 1200px
+  width 100%
+  display flex
+  height max-content
+  background-color #ffffff
+  p 
+    padding .5em
+
+
+.index 
+  .conAppInit
+    input 
+      width 300px
+
+.conAppInit
+  h2 
+    padding .5em 0
+
+
+
+
+
+header
+  position fixed
+  z-index 50
+  display block
+  // background-color #000
+  width 100%
+  // size( 100%,auto )
+  // opacity 0
+  color colorZ9
+  background-color colorZ1
+  top 0
+  left 0
+  max-height 40px
+  align-items center
+  // &.index
+    // background-color red
+  nav.topMenu 
+    display flex
+    flex 1
+    align-items center
+    justify-content space-between
+    // background-color red
+    ul 
+      display flex
+      height 40px
+      transition .5s
+      li 
+        position relative
+        display inline-block
+        transition .5s
+        border-bottom 2px solid transparent
+        padding 0 1em
+        &.pick ,&:hover
+          border-bottom 3px solid sysbor !important
+          background-color colorZ0 !important
+        a
+          // padding .75em 
+          color colorZ6
+          text-transform uppercase
+          font-size 1rem
+          word-break keep-all
+          display inline-flex
+          justify-content center
+          align-items center
+          padding 0 1em
+          height 100%
+          .material-icons 
+            font-size 1em
+            padding-left .5em
+            color colorArr[0]
+        &:hover
+          ul 
+            display flex
+            opacity 1
+            visibility visible
+            
+        > ul
+          flex-flow wrap
+          visibility hidden
+          opacity 0
+          position absolute
+          top 100%
+          margin-top 2px
+          padding 1px
+          left 0
+          z-index 1
+          transition .25s
+          
+          li
+            background-color sys4
+            width 100%
+            display inline-flex
+            justify-content center
+            padding .5em .25em
+            a 
+              // width 100%
+              display inline-block
+              // text-align center
+        .sub-menu 
+          // display block
+          background-color sys4
+          border 3px solid sys4 
+          height auto
+          box-shadow 0 0 4px sysbg
+          border-radius .5em
+          opacity 0
+          flex-direction column
+          &::before
+            position absolute
+            content ""
+            display block
+            size(0)
+            top -1em
+            left .5em
+            border-style solid
+            border-width 0 .5em 1em .5em
+            border-color transparent transparent sys4 transparent
+            z-index -1
+          li 
+            width 100% 
+            text-align center
+            border-radius .5em
+            // background-color rgba( sys1,.5)
+            &:nth-child(1)
+              // border-bottom 2px solid sys4
+              margin-bottom 3px
+            a 
+              padding 0.75em 1em
+
+    ul.sysBox
+      display inline-flex
+      li 
+        padding-top .5em
+        margin 0 .25em
+        color colorZ6
+        cursor pointer
+        transition .5s 
+        &:hover 
+          color colorZ9
+        a 
+          color colorZ6
+        span 
+
+
+
+.login_btn
+  margin-right 1em
+
+
+
+
+
+
+button.login_btn
+  height 2rem
+  font-size .8em
+  display inline-flex
+  width 4rem
+  justify-content center
+  align-items center
+  border-radius 4px
+  border 1px solid #ccc
+
+
+.bgGary
+  position fixed
+  top 0
+  left 0
+  size(100%)
+  background-color rgba(0,0,0,.7)
+  
+.login-form
+  position fixed
+  display flex
+  flex-direction column
+  right 2em
+  top 0
+  background-color #333
+  padding 1em
+  border-radius 4px
+  label
+    padding .25em
+    display inline-flex
+    justify-content space-between
+    align-items center
+    input 
+      height 2em
+      padding-left 1em
+      border-radius 4px
+      border 1px solid #ccc
+      margin-left .5em
+  .btnBox
+    // width calc( 100% - .25em )
+    display flex
+    button 
+      border 1px solid #ffffff
+      margin-top .25em
+      height 2em
+      border-radius 4px
+      display inline-flex 
+      flex 1
+      justify-content center
+      align-items center
+      box-sizing border-box
+      margin 0 .25em
+.login-box 
+  max-width 300px
+  margin auto
+  padding 1.5em
+  border 1px solid #ccc
+  border-radius 10px
+  box-shadow 0 0 10px rgba(0,0,0,0.05)
+
+  h2 
+    text-align center
+
+  form div 
+    margin-bottom 1em
+
+  input 
+    width 100%
+    padding 0.5em
+
+  .error 
+    color red
+    margin-top 1em
+    text-align center
+

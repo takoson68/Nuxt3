@@ -1,0 +1,205 @@
+// ========== Prefixer ==========
+// prefixer(property, value, prefixes)
+//   if !prefixes
+//     prefixes = 'spec' 'webkit' 'moz' 'ms' 'o'
+
+//   for prefix in prefixes
+//     if prefix == 'webkit'
+//       -webkit-{property} value
+//     else if prefix == 'moz'
+//       -moz-{property} value
+//     else if prefix == 'ms'
+//       -ms-{property} value
+//     else if prefix == 'o'
+//       -o-{property} value
+//     else if prefix == 'spec'
+//       {property} value
+
+
+// // ========== 常用效果 ==========
+// box-sizing(value)
+//   prefixer('box-sizing', value)
+
+// border-radius(value)
+//   prefixer('border-radius', value)
+
+// box-shadow(value)
+//   prefixer('box-shadow', value)
+
+// transition(value)
+//   prefixer('transition', value)
+
+// animation(value = '')
+//   prefixer('animation', value)
+
+opacity(value)
+  opacity value
+  filter: "alpha(opacity=" + (value * 100) + ")"
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=" + (value * 100) + ")"
+
+// ========== 版面設定 ==========
+size(w, h = w)
+  width: w
+  height: h
+
+pos(t = null, r = null, b = null, l = null)
+  position: absolute
+  if t != null
+    top: t
+  if r != null
+    right: r
+  if b != null
+    bottom: b
+  if l != null
+    left: l
+
+flexbox(a = space-around, b = center, c = center)
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+  justify-content: a
+  align-items: b
+  align-content: c
+
+center(row = center, col = center)
+  display: flex
+  align-items: row
+  justify-content: col
+
+// ========== 透明漸層 ==========
+filter-gradient(fromColor, toColor, deg = 180)
+  background-image: -webkit-linear-gradient(deg + deg, fromColor, toColor)
+  background-image: -moz-linear-gradient(deg + deg, fromColor, toColor)
+  background-image: -ms-linear-gradient(deg + deg, fromColor, toColor)
+  background-image: -o-linear-gradient(deg + deg, fromColor, toColor)
+  background-image: linear-gradient(deg + deg, fromColor, toColor)
+  filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='" + fromColor + "', endColorstr='" + toColor + "', GradientType=0)"
+
+linearGradient(topColor, bottomColor)
+  background: topColor
+  background: -moz-linear-gradient(top, topColor 0%, bottomColor 100%)
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, topColor), color-stop(100%, bottomColor))
+  background: -webkit-linear-gradient(top, topColor 0%, bottomColor 100%)
+  background: -o-linear-gradient(top, topColor 0%, bottomColor 100%)
+  background: -ms-linear-gradient(top, topColor 0%, bottomColor 100%)
+  background: linear-gradient(to bottom, topColor 0%, bottomColor 100%)
+  filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='" + topColor + "', endColorstr='" + bottomColor + "', GradientType=0)"
+
+// ========== 動畫 keyframes ==========
+fadein(animation = '')
+  animation('fadein ' + animation)
+  @keyframes fadein
+    from
+      opacity: 0
+      pointer-events: none
+    to
+      opacity: 1
+      pointer-events: auto
+
+fadeout(animation = '')
+  animation('fadeout ' + animation)
+  @keyframes fadeout
+    from
+      opacity: 1
+    to
+      opacity: 0
+
+fadeinUp(animation = '')
+  animation('fadeinUp ' + animation)
+  @keyframes fadeinUp
+    from
+      opacity: 0
+      transform: translate(0px, 200px)
+    to
+      opacity: 1
+      transform: translate(0px, 0px)
+
+fadeinDown(animation = '')
+  animation('fadeinDown ' + animation)
+  @keyframes fadeinDown
+    from
+      opacity: 0
+      transform: translate(0px, -200px)
+    to
+      opacity: 1
+      transform: translate(0px, 0px)
+
+fadeinLeft(animation = '')
+  animation('fadeinLeft ' + animation)
+  @keyframes fadeinLeft
+    from
+      opacity: 0
+      transform: translate(-100px, 0px)
+    to
+      opacity: 1
+      transform: translate(0px, 0px)
+
+fadeinRight(animation = '')
+  animation('fadeinRight ' + animation)
+  @keyframes fadeinRight
+    from
+      opacity: 0
+      transform: translate(100%, 0px)
+    to
+      opacity: 1
+      transform: translate(0%, 0px)
+
+fadeinRight_px(animation = '')
+  animation('fadeinRight_px ' + animation)
+  @keyframes fadeinRight_px
+    from
+      opacity: 0
+      transform: translate(100px, 0px)
+    to
+      opacity: 1
+      transform: translate(0px, 0px)
+
+// ========== 元件 ==========
+btn(bottom, top, border, highlight, lowlight, text)
+  border: 1px solid border
+  color: text
+  border-radius: 5px
+  box-shadow: inset 0 1px 0px highlight, 0 2px 0px lowlight
+  text-shadow: 0px -1px 0px rgba(100, 100, 100, 0.5)
+  background: bottom
+  padding: 0.45rem 1.5rem
+  linearGradient(top, bottom)
+
+btn-close(x, y, w, h, ml, mt)
+  &:before
+    position: absolute
+    left: x
+    top: y
+    width: w
+    height: h
+    margin-left: ml
+    margin-top: mt
+    border-top-right-radius: 4px
+    border-bottom-right-radius: 4px
+    background-color: #d06060
+    border: solid 1px #d86d6d
+    content: "\f00d"
+    font-family: FontAwesome
+    text-align: center
+    color: #fff
+    line-height: 65px
+    font-size: 26px
+    font-style: normal
+    font-weight: normal
+    text-decoration: inherit
+
+  &:hover:before
+    background-color: #c24a4a
+    border: solid 1px #d06060
+
+// ========== Breakpoints ==========
+breakpoints = {
+  mobile: '(max-width: 640px)',
+  tablet: '(min-width: 641px) and (max-width: 1024px)',
+  desktop: '(min-width: 1025px)'
+}
+breakpoint(key)
+  query = breakpoints[key]
+  if query
+    @media query
+      block
