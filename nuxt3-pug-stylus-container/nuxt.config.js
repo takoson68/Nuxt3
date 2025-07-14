@@ -28,12 +28,12 @@ export default defineNuxtConfig({
   ssr: false, // ❗必須禁用 SSR
   target: 'static', // ❗已不再使用，但保留相容性
   app: {
-    baseURL: '/'+process.env.NUXT_APP_BASE_URL || './'
+    baseURL: process.env.NUXT_APP_BASE_URL || '/'
   },
   nitro: {
     compatibilityDate: '2025-07-09',
     prerender: {
-      routes: ['./'],
+      routes: ['/'],
       fallback: '404.html'
     }
   }
